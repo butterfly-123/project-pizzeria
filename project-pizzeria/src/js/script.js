@@ -90,7 +90,7 @@
         /* prevent default action for event */
         event.preventDefault();
         /* toggle active class on element of thisProduct */
-        thisProduct.classList('active');
+        thisProduct.toggleClass('active');
         /* find all active products */
         const activeProducts = document.querySelectorAll('active');
         console.log('activeProducts ', activeProducts);
