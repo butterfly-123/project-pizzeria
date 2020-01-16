@@ -143,13 +143,13 @@
           /* save the element in param.options with key optionId as const option */
           const paramIdOptions = thisProduct.element.querySelector(param.options);
           /* START IF: if option is selected and option is not default */
-          if (paramIdOptions == !option.default) {
+          if (paramIdOptions == true && paramIdOptions !== option.default) {
             /* add price of option to variable price */
             price =+ paramIdOptions;
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          if (paramIdOptions == option.default) {
+          if (paramIdOptions !== true && paramIdOptions == option.default) {
             /* deduct price of option from price */
             price =- paramIdOptions;
           /* END ELSE IF: if option is not selected and option is default */
