@@ -61,6 +61,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
 
       console.log('newProduct: ', thisProduct);
@@ -78,12 +79,22 @@
       menuConteiner.appendChild(thisProduct.element);
     }
 
+    getElements(){
+      const thisProduct = this;
+    
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    }
 
     initAccordion(){
       const thisProduct = this;
   
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = document.querySelector(select.menuProduct.clickable);
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      console.log('clickableTrigger: ', clickableTrigger);
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function(){
         console.log('clicked');
@@ -92,12 +103,12 @@
         /* toggle active class on element of thisProduct */
         thisProduct.toggleClass('active');
         /* find all active products */
-        const activeProducts = document.querySelectorAll('active');
+        const activeProducts = document.querySelectorAll('.product.active');
         console.log('activeProducts ', activeProducts);
         /* START LOOP: for each active product */
         for (let product of activeProducts) {
           /* START: if the active product isn't the element of thisProduct */
-          if (activeProducts !== thisProduct.element) {
+          if (product !== thisProduct.element){
             /* remove class active for the active product */
             product.classList.remove('active');
           /* END: if the active product isn't the element of thisProduct */
