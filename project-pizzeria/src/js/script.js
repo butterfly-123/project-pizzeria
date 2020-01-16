@@ -95,11 +95,11 @@
         const activeProducts = document.querySelectorAll('active');
         console.log('activeProducts ', activeProducts);
         /* START LOOP: for each active product */
-        for (product of activeProducts) {
+        for (let product of activeProducts) {
           /* START: if the active product isn't the element of thisProduct */
-          if (activeProducts != thisProduct) {
+          if (activeProducts !== thisProduct.element) {
             /* remove class active for the active product */
-            activeProducts.remove('active');
+            product.classList.remove('active');
           /* END: if the active product isn't the element of thisProduct */
           } 
         /* END LOOP: for each active product */
