@@ -89,6 +89,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      
     }
 
     initAccordion(){
@@ -125,7 +126,7 @@
       const thisProduct = this;
       console.log(thisProduct);
     }
-    
+
     processOrder(){
       const thisProduct = this;
     
@@ -139,17 +140,17 @@
         /* save the element in thisProduct.data.params with key paramId as const param */
         const paramsId = thisProduct.element.querySelector(thisProduct.data.params);
         /* START LOOP: for each optionId in param.options */
-        for (let paramId in paramIdOptions) {
+        for (let paramId in optionSelected) {
           /* save the element in param.options with key optionId as const option */
-          const paramIdOptions = thisProduct.element.querySelector(param.options);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           /* START IF: if option is selected and option is not default */
-          if (paramIdOptions == true && paramIdOptions !== option.default) {
+          if(optionSelected && !option.default){
             /* add price of option to variable price */
-            price =+ paramIdOptions;
+            price =+ optionSelected;
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          if (paramIdOptions !== true && paramIdOptions == option.default) {
+          if(!optionSelected && option.default){
             /* deduct price of option from price */
             price =- paramIdOptions;
           /* END ELSE IF: if option is not selected and option is default */
@@ -161,6 +162,8 @@
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       price = thisProduct.element.querySelector(thisProduct.priceElem);
     }
+    
+  
   
   const app = {
     
