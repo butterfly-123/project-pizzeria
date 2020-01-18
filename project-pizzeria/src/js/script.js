@@ -89,7 +89,8 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      
+      thisProduct.imageWrapper = thisProduct.element.querySelectorAll(select.menuProduct.imageWrapper);
+      console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -167,19 +168,37 @@
           if(optionSelected && !option.default) {
 
             /* add price of option to variable price */
-            price += optionSelected;
+            price =  price + optionSelected;
             console.log('price: ', price);
 
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          if(optionSelected && option.default) {
+          else if(optionSelected && option.default) {
 
             /* deduct price of option from price */
-            price -= optionSelected;
+            price = price - optionSelected;
 
           /* END ELSE IF: if option is not selected and option is default */
           }
+
+          /* set variable images to equal thisProduct.data.images */
+          let images = thisProduct.data.images;
+          console.log('images: ', images);
+
+          /* if optionSelected is selected */
+          if(optionSelected && option.default) {
+
+            /* to images add classNames.menuProduct.imageVisible */
+            images.classList.add(classNames.menuProduct.imageVisible);
+          }
+          else{
+
+            /* else remove from images classNames.menuProduct.imageVisible */
+            images.classList.remove(classNames.menuProduct.imageVisible);
+          }
+
+
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
