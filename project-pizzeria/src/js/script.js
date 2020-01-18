@@ -96,24 +96,32 @@
       const thisProduct = this;
   
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      console.log('clickableTrigger: ', clickableTrigger);
+      const trigger = thisProduct.accordionTrigger;
+      console.log('trigger: ', trigger);
+
       /* START: click event listener to trigger */
-      clickableTrigger.addEventListener('click', function(){
+      trigger.addEventListener('click', function(){
         console.log('clicked');
+
         /* prevent default action for event */
         event.preventDefault();
+
         /* toggle active class on element of thisProduct */
-        thisProduct.toggleClass('active');
+        thisProduct.element.classList.toggle('active');
+
         /* find all active products */
-        const activeProducts = document.querySelectorAll('.product.active');
+        const activeProducts = document.querySelectorAll('.product-list article.active');
         console.log('activeProducts ', activeProducts);
+
         /* START LOOP: for each active product */
-        for (let product of activeProducts) {
+        for (let activeProduct of activeProducts) {
+
           /* START: if the active product isn't the element of thisProduct */
-          if (product !== thisProduct.element){
+          if (activeProduct != thisProduct.element){
+
             /* remove class active for the active product */
-            product.classList.remove('active');
+            activeProduct.classList.remove('active');
+
           /* END: if the active product isn't the element of thisProduct */
           } 
         /* END LOOP: for each active product */
@@ -129,39 +137,16 @@
 
     processOrder(){
       const thisProduct = this;
+      console.log('thisProduct: ', thisProduct);
     
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData: ', formData);
-      /* set variable price to equal thisProduct.data.price */
-      const price = thisProduct.element.querySelector(thisProduct.data.price);
-      /* START LOOP: for each paramId in thisProduct.data.params */
-      for (let paramId in paramsId) {
-        /* save the element in thisProduct.data.params with key paramId as const param */
-        const paramsId = thisProduct.element.querySelector(thisProduct.data.params);
-        /* START LOOP: for each optionId in param.options */
-        for (let paramId in optionSelected) {
-          /* save the element in param.options with key optionId as const option */
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
-          /* START IF: if option is selected and option is not default */
-          if(optionSelected && !option.default){
-            /* add price of option to variable price */
-            price =+ optionSelected;
-          /* END IF: if option is selected and option is not default */
-          }
-          /* START ELSE IF: if option is not selected and option is default */
-          if(!optionSelected && option.default){
-            /* deduct price of option from price */
-            price =- paramIdOptions;
-          /* END ELSE IF: if option is not selected and option is default */
-          }
-        /* END LOOP: for each optionId in param.options */
-        }
-      /* END LOOP: for each paramId in thisProduct.data.params */
-      }
-      /* set the contents of thisProduct.priceElem to be the value of variable price */
-      price = thisProduct.element.querySelector(thisProduct.priceElem);
+
+      
+      
     }
+  }
     
   
   
@@ -171,9 +156,6 @@
 
       const thisApp = this;
       console.log('thisApp.data: ', thisApp.data);
-
-      const testProduct = new Product();
-      console.log('testProduct: ', testProduct);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
