@@ -186,16 +186,19 @@
           let images = thisProduct.data.images;
           console.log('images: ', images);
 
-          /* if optionSelected is selected */
-          if(optionSelected && option.default) {
+          /* LOOP: for each images */
+          for (let image in images) {
+            /* if optionSelected is selected */
+            if(optionSelected && option.default) {
 
-            /* to images add classNames.menuProduct.imageVisible */
-            images.classList.add(classNames.menuProduct.imageVisible);
-          }
-          else{
+              /* to images add classNames.menuProduct.imageVisible */
+              image.classList.add(classNames.menuProduct.imageVisible);
+            }
+            else{
 
-            /* else remove from images classNames.menuProduct.imageVisible */
-            images.classList.remove(classNames.menuProduct.imageVisible);
+              /* else remove from images classNames.menuProduct.imageVisible */
+              image.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
 
 
