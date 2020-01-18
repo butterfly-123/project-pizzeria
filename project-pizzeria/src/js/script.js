@@ -90,7 +90,6 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelectorAll(select.menuProduct.imageWrapper);
-      console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -153,61 +152,50 @@
 
 
         /* save the element in thisProduct.data.params with key paramId as const param */
-        const param = thisProduct.data.params;
-        console.log('param: ', param);
+        const params = thisProduct.data.params[paramId];
+        console.log('params: ', params);
 
         /* START LOOP: for each optionId in param.options */
-        for (let optionId in param.options) {
+        for (let optionId in params.options) {
 
           /* save the element in param.options with key optionId as const option */
-          const option = param.options;
-          console.log('option: ', option);
+          const option = params.option[optionId];
+
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+          console.log('optionSelected: ', optionSelected);
+
+
+          const images = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log('images: ', images);
+          
+          if (images) {
+            if(optionSelected) images.classList.add(classNames.menuProduct.imageVisible);
+            else images.classList.remove(classNames.menuProduct.imageVisible);
+          }
 
           /* START IF: if option is selected and option is not default */
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
           if(optionSelected && !option.default) {
 
             /* add price of option to variable price */
-            price =  price + optionSelected;
-            console.log('price: ', price);
+            price +=  option.price;
 
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          else if(optionSelected && option.default) {
+          else if(!optionSelected && option.default) {
 
             /* deduct price of option from price */
-            price = price - optionSelected;
+            price -= option.price;
 
           /* END ELSE IF: if option is not selected and option is default */
           }
-
-          /* set variable images to equal thisProduct.data.images */
-          let images = thisProduct.data.images;
-          console.log('images: ', images);
-
-          /* LOOP: for each images */
-          for (let image in images) {
-            /* if optionSelected is selected */
-            if(optionSelected && option.default) {
-
-              /* to images add classNames.menuProduct.imageVisible */
-              image.classList.add(classNames.menuProduct.imageVisible);
-            }
-            else{
-
-              /* else remove from images classNames.menuProduct.imageVisible */
-              image.classList.remove(classNames.menuProduct.imageVisible);
-            }
-          }
-
-
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
       /* set the contents of thisProduct.priceElem to be the value of variable price */
-      price[thisProduct.priceElem];
+      price *= thisProduct.amountWidget.value;
+      thisProduct.priceElem.innerHTML = price;
     }
   }
   
