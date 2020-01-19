@@ -189,8 +189,8 @@
  
           const option = param.options[optionId];
  
-          const optionSelected =
-            formData.hasOwnProperty(paramId) &&
+          const optionSelected = 
+            formData.hasOwnProperty(paramId) && 
             formData[paramId].indexOf(optionId) > -1;
  
           /* [done] START IF: if option is selected and option is not default */
@@ -207,16 +207,14 @@
  
             price = price - option.price;
  
-            console.log("option.price: ", option.price);
+            console.log('option.price: ', option.price);
  
             /* [done] END ELSE IF: if option is not selected and option is default */
           }
  
-          const optionImages = thisProduct.imageWrapper.querySelectorAll(
-            "." + paramId + "-" + optionId
-          );
+          const optionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
  
-          console.log("optionImages: ", optionImages);
+          console.log('optionImages: ', optionImages);
  
           if (optionSelected) {
             for (let image of optionImages) {
