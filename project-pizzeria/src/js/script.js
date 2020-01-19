@@ -109,19 +109,19 @@
  
       /* [done] START: click event listener to trigger */
  
-      trigger.addEventListener("click", function() {
+      trigger.addEventListener('click', function() {
         /* [done] prevent default action for event */
  
         event.preventDefault();
  
         /* [done] toggle active class on element of thisProduct */
  
-        thisProduct.element.classList.toggle("active");
+        thisProduct.element.classList.toggle('active');
  
         /* [done] find all active products */
  
         const activeProducts = document.querySelectorAll(
-          ".product-list article.active"
+          '.product-list article.active'
         );
  
         /* [done] START LOOP: for each active product */
@@ -132,7 +132,7 @@
           if (activeProduct != thisProduct.element) {
             /* [done] remove class active for the active product */
  
-            activeProduct.classList.remove("active");
+            activeProduct.classList.remove('active');
  
             /* [done] END: if the active product isn't the element of thisProduct */
           }
@@ -147,18 +147,18 @@
     initOrderForm() {
       const thisProduct = this;
  
-      thisProduct.form.addEventListener("submit", function(event) {
+      thisProduct.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
  
       for (let input of thisProduct.formInputs) {
-        input.addEventListener("change", function() {
+        input.addEventListener('change', function() {
           thisProduct.processOrder();
         });
       }
  
-      thisProduct.cartButton.addEventListener("click", function(event) {
+      thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
@@ -238,7 +238,7 @@
  
       thisProduct.priceElem.innerHTML = price;
     }
-    
+
   }
   
   const app = {
