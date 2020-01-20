@@ -256,6 +256,7 @@
       thisWidget.getElements(element);
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
 
       console.log('amountWidget: ', thisWidget);
       console.log('constructor argument: ', element);
@@ -274,9 +275,14 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
+      console.log('newValue: ', newValue);
 
       /* TODO: Add validation */
-      if (thisWidget.value !== newValue && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMin) {
+      if (
+        thisWidget.value !== newValue && 
+        newValue >= settings.amountWidget.defaultMin && 
+        newValue <= settings.amountWidget.defaultMin
+      ) {
         thisWidget.value = newValue;
         thisWidget.announce();
       } 
@@ -297,7 +303,7 @@
       });
 
       thisWidget.linkIncrease.addEventListener('click', function() {
-        thisWidget.linkIncrease.setValue(thisWidget.value + 1);
+        thisWidget.setValue(thisWidget.value + 1);
       });
     }
 
