@@ -279,9 +279,9 @@
 
       /* TODO: Add validation */
       if (
-        thisWidget.value !== newValue && 
+        newValue.value !== thisWidget.value && 
         newValue >= settings.amountWidget.defaultMin && 
-        newValue <= settings.amountWidget.defaultMin
+        newValue <= settings.amountWidget.defaultMax
       ) {
         thisWidget.value = newValue;
         thisWidget.announce();
