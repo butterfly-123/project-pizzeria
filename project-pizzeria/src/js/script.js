@@ -189,6 +189,7 @@
       thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
 
@@ -198,9 +199,8 @@
       /* [done] read all data from the form (using utils.serializeFormToObject) and save it to const formData */
  
       const formData = utils.serializeFormToObject(thisProduct.form);
- 
+      
       /* [done] set variable price to equal thisProduct.data.price */
- 
       let price = thisProduct.data.price;
  
       /* [done] START LOOP: for each paramId in thisProduct.data.params */
@@ -245,6 +245,16 @@
           // console.log('optionImages: ', optionImages);
  
           if (optionSelected) {
+
+            if(!thisProduct.params[paramId]) {
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              }
+            };
+
+            thisProduct.params[paramId].options[optionId] = option.label;
+
             for (let image of optionImages) {
               image.classList.add(classNames.menuProduct.imageVisible);
             }
@@ -261,8 +271,12 @@
       }
  
       /* [done] set the contents of thisProduct.priceElem to be the value of variable price */
-      price *= thisProduct.amountWidget.value;
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+
+      thisProduct.priceElem.innerHTML = thisProduct.price;
+
+      console.log('thisProduct.params: ', thisProduct.params);
     }
 
     initAmountWidget() {
@@ -271,6 +285,12 @@
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
       thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder());
+    }
+
+    addToCart() {
+      const thisProduct = this; 
+
+      app.cart.add(thisProduct);
     }
 
   }
@@ -368,6 +388,12 @@
       thisCart.dom.toggleTrigger.addEventListener('click', () => {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+
+    add(menuProducts) {
+      // const thisProduct = this;
+
+      console.log('adding products: ', menuProducts);
     }
   }
 
