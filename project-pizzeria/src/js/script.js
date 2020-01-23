@@ -252,8 +252,8 @@
               thisProduct.params[paramId] = {
                 label: param.label,
                 options: {},
-              }
-            };
+              };
+            }
 
             thisProduct.params[paramId].options[optionId] = option.label;
 
@@ -397,12 +397,12 @@
       // const thisProduct = this;
       const thisCart = this;
 
-      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedHTML = templates.cartProduct(menuProducts);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      console.log('adding products: ', menuProducts);
+      thisCart.products.push(menuProducts);
     }
   }
 
