@@ -403,7 +403,7 @@
 
       const generatedDOM = templates.cartProduct(thisCart.dataSource);
 
-      thisCart.element = utils.createDOMFromHTML(generatedHTML);
+      thisCart.element = utils.createDOMFromHTML(generatedDOM);
 
 
 
