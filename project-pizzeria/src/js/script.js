@@ -396,10 +396,16 @@
       // const thisProduct = this;
       const thisCart = this;
 
-      const generatedDOM = templates.cartProduct(thisCart.dataSource);
+      const generatedHTML = templates.menuProduct(thisProduct.data);
       console.log('generatedDOM: ', generatedDOM);
 
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
+      const generatedDOM = templates.cartProduct(thisCart.dataSource);
+
       thisCart.element = utils.createDOMFromHTML(generatedHTML);
+
+
 
 
 
