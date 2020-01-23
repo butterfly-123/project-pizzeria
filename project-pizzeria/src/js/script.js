@@ -199,7 +199,9 @@
       /* [done] read all data from the form (using utils.serializeFormToObject) and save it to const formData */
  
       const formData = utils.serializeFormToObject(thisProduct.form);
-      
+
+      thisProduct.params = {};
+
       /* [done] set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price;
  
@@ -425,11 +427,11 @@
     init: function() {
       const thisApp = this;   
     
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
 
       thisApp.initCart();
       thisApp.initData();
