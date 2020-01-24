@@ -388,14 +388,14 @@
       thisCart.subtotalPrice = 0; 
 
       for (let product of thisCart.products) {
-        thisCart.subtotalPrice += thisCartProduct.price;
-        thisCart.totalNumber += thisCartProduct.amount;
+        thisCart.subtotalPrice += product.price;
+        thisCart.totalNumber += product.amount;
       }
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
 
-      console.log('totalNumber: ', totalNumber);
-      console.log('subtotalPrice: ', subtotalPrice);
+      console.log('totalNumber: ', thisCart.totalNumber);
+      console.log('subtotalPrice: ', thisCart.subtotalPrice);
       console.log('thisCart.totalPrice: ', thisCart.totalPrice);
     }
 
@@ -427,6 +427,7 @@
       thisCart.dom.productList.appendChild(generatedDOM);
 
       thisCart.products.push(new CartProduct(menuProducts, generatedDOM));
+      thisCart.update();
     }
   }
 
