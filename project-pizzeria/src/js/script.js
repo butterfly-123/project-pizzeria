@@ -301,16 +301,16 @@
   }
   
   class AmountWidget {
-    constructor(element){
+    constructor(dom){
       const thisWidget = this;
 
-      thisWidget.getElements(element);
+      thisWidget.getElements(dom);
       thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
 
       console.log('amountWidget: ', thisWidget);
-      console.log('constructor argument: ', element);
+      console.log('constructor argument: ', dom);
     }
 
     getElements(element) {
@@ -405,7 +405,7 @@
 
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      thisCart.products.push(new CartProduct(menuProducts, generatedDOM));
     }
   }
 
@@ -439,6 +439,16 @@
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
 
       console.log('thisCartProduct: ', thisCartProduct);
+    }
+
+    initAmountWidget() {
+      const thisCartProduct = this;
+
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.amountWidgetElem);
+
+      thisCartProduct.amountWidgetElem.addEventListener('click', () => {
+        
+      });
     }
   }
 
