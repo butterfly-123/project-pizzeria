@@ -374,7 +374,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
 
-      thisCart.deliveryFee = thisCart.element.querySelector(settings.cart.defaultDeliveryFee);
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       console.log('thisCart.deliveryFee: ', thisCart.deliveryFee);
 
       // console.log('thisCart: ', thisCart);
@@ -388,8 +388,8 @@
       thisCart.subtotalPrice = 0; 
 
       for (let product of thisCart.products) {
-        thisCart.subtotalPrice += thisCartProduct.amount;
-        thisCartProduct.amount += thisCartProduct.price;
+        thisCart.subtotalPrice += thisCartProduct.price;
+        thisCart.totalNumber += thisCartProduct.amount;
       }
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
@@ -428,8 +428,6 @@
 
       thisCart.products.push(new CartProduct(menuProducts, generatedDOM));
     }
-
-    update()
   }
 
   class CartProduct{
