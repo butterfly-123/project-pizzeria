@@ -440,14 +440,18 @@
       })
     }
 
-    remove(cartProduct) {
+    remove(cartProduct){
       const thisCart = this;
+ 
       const index = thisCart.products.indexOf(cartProduct);
-      const removeElementFromTable = index.splice(cartProduct);
-
-      thisCart.dom.element.splice(cartProduct.dom.wrapper);
-
-      update();
+ 
+      console.log('index: ', index);
+ 
+      thisCart.products.splice(index, 1);
+ 
+      cartProduct.dom.wrapper.remove(cartProduct);
+ 
+      thisCart.update();
     }
 
     add(menuProducts) {
