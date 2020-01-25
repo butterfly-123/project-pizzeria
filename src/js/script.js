@@ -432,12 +432,12 @@
 
       thisCart.dom.productList.addEventListener('updated', () => {
         thisCart.update();
-      })
+      });
 
       thisCart.dom.productList.addEventListener('remove', () => {
 
         console.log('click');
-      })
+      });
     }
 
     remove(cartProduct){
