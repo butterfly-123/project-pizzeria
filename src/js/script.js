@@ -431,6 +431,9 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+
+      console.log('thisCart.dom.form: ', thisCart.dom.form);
 
       thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
@@ -454,6 +457,42 @@
 
         console.log('click');
       });
+
+      thisCart.dom.form.addEventListener('submit', () => {
+
+        event.preventDefault();
+
+        thisCart.sendOrder();
+
+      });
+    }
+
+    sendOrder() {
+      const url = settings.db.url + '/' + settings.db.order;
+
+      const payload = {
+        address: 'test',
+        totalPrice: thisCart.totalPrice,
+      };
+      
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+      
+      fetch(url, options)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(parsedResponse) {
+          console.log('parsedResponse: ', parsedResponse);
+        });
+
+      console.log('thisApp.data: ', JSON.stringify(thisApp.data));
+
     }
 
     remove(cartProduct){
@@ -594,7 +633,7 @@
         });
 
       console.log('thisApp.data: ', JSON.stringify(thisApp.data));
-      
+
     },
 
     initCart: function() {
