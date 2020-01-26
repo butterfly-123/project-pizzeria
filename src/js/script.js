@@ -143,6 +143,7 @@
       /* [done] START: click event listener to trigger */
  
       trigger.addEventListener('click', function() {
+
         /* [done] prevent default action for event */
  
         event.preventDefault();
@@ -160,9 +161,11 @@
         /* [done] START LOOP: for each active product */
  
         for (let activeProduct of activeProducts) {
+
           /* [done] START: if the active product isn't the element of thisProduct */
  
           if (activeProduct != thisProduct.element) {
+
             /* [done] remove class active for the active product */
  
             activeProduct.classList.remove('active');
@@ -208,11 +211,13 @@
       thisProduct.params = {};
 
       /* [done] set variable price to equal thisProduct.data.price */
+
       let price = thisProduct.data.price;
  
       /* [done] START LOOP: for each paramId in thisProduct.data.params */
  
       for (let paramId in thisProduct.data.params) {
+
         /* [done] save the element in thisProduct.data.params with key paramId as const param */
  
         const param = thisProduct.data.params[paramId];
@@ -220,6 +225,7 @@
         /* [done] START LOOP: for each optionId in param.options */
  
         for (let optionId in param.options) {
+
           /* [done] save the element in param.options with key optionId as const option */
  
           const option = param.options[optionId];
@@ -231,12 +237,15 @@
           /* [done] START IF: if option is selected and option is not default */
  
           if (optionSelected && !option.default) {
+
             /* [done] add price of option to variable price */
  
             price = price + option.price;
  
             /* [done] END IF: if option is selected and option is not default */
+
           } else if (!optionSelected && option.default) {
+
             /* [done] START ELSE IF: if option is not selected and option is default */
             /* [done] deduct price of option from price */
  
@@ -278,6 +287,7 @@
       }
  
       /* [done] set the contents of thisProduct.priceElem to be the value of variable price */
+
       thisProduct.priceSingle = price;
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
@@ -334,6 +344,7 @@
       // console.log('newValue: ', newValue);
 
       /* TODO: Add validation */
+
       if (
         newValue.value !== thisWidget.value && 
         newValue >= settings.amountWidget.defaultMin && 
@@ -562,7 +573,7 @@
     initData: function() {
       const thisApp = this;
 
-      thisApp.data = {};
+      thisApp.data = [];
 
       const url = settings.db.url + '/' + settings.db.product;
 
@@ -570,16 +581,20 @@
         .then(function(rawResponse) {
           return rawResponse.json();
         })
-
-        .then(function(parsetResponse) {
-          console.log('parsetResponse: ', parsetResponse);
+        .then(function(parsedResponse) {
+          console.log('parsedResponse: ', parsedResponse);
 
           /* save parsetResponse as thisApp.data.product */
-          parsetResponse = thisApp.data.product;
+
+          thisApp.data.products = parsedResponse;
+
           /* execute initMenu method */
+
           thisApp.initMenu();
         });
+
       console.log('thisApp.data: ', JSON.stringify(thisApp.data));
+      
     },
 
     initCart: function() {
