@@ -1,3 +1,6 @@
+import {settings, select, classNames, templates} from '../settings.js';
+import {utils} from '../utils.js';
+import {CartProduct} from './components/CartProduct.js';
 
 export class Cart {
   constructor(element) {
@@ -67,10 +70,10 @@ export class Cart {
     );
 
     thisCart.renderTotalsKeys = [
-      "totalNumber",
-      "totalPrice",
-      "subtotalPrice",
-      "deliveryFee"
+      'totalNumber',
+      'totalPrice',
+      'subtotalPrice',
+      'deliveryFee'
     ];
 
     for (let key of thisCart.renderTotalsKeys) {
@@ -83,21 +86,21 @@ export class Cart {
   initActions() {
     const thisCart = this;
 
-    thisCart.dom.toggleTrigger.addEventListener("click", function() {
+    thisCart.dom.toggleTrigger.addEventListener('click', function() {
       event.preventDefault();
 
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     });
 
-    thisCart.dom.productList.addEventListener("updated", function() {
+    thisCart.dom.productList.addEventListener('updated', function() {
       thisCart.update();
     });
 
-    thisCart.dom.productList.addEventListener("remove", function() {
+    thisCart.dom.productList.addEventListener('remove', function() {
       thisCart.remove(event.detail.cartProduct);
     });
 
-    thisCart.dom.form.addEventListener("submit", function() {
+    thisCart.dom.form.addEventListener('submit', function() {
       event.preventDefault();
 
       thisCart.sendOrder();
@@ -106,9 +109,9 @@ export class Cart {
 
   sendOrder() {
     const thisCart = this;
-    console.log("send");
+    console.log('send');
 
-    const url = settings.db.url + "/" + settings.db.order;
+    const url = settings.db.url + '/' + settings.db.order;
 
     const payload = {
       address: thisCart.dom.address.value,
@@ -126,9 +129,9 @@ export class Cart {
     }
     
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     };
@@ -138,7 +141,7 @@ export class Cart {
         return response.json();
       })
       .then(function(parsedResponse) {
-        console.log("parsedResponse", parsedResponse);
+        console.log('parsedResponse', parsedResponse);
       });
   }
 
@@ -147,7 +150,7 @@ export class Cart {
 
     const index = thisCart.products.indexOf(cartProduct);
 
-    console.log("index: ", index);
+    console.log('index: ', index);
 
     thisCart.products.splice(index, 1);
 

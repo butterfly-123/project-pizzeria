@@ -1,9 +1,9 @@
-import {select, classNames, templates} from '../settings.js';
-import {AmountWidget} from './AmountWidget.js';
-import {Cart} from './Cart.js';
-import {CartProduct} from './CartProduct.js';
-import {Product} from './Product.js';
-import {utils} from '../utils.js';
+import {AmountWidget} from './components/AmountWidget.js';
+import {Cart} from './components/Cart.js';
+import {CartProduct} from './components/CartProduct.js';
+import {Product} from './components/Product.js';
+import {utils} from './utils.js';
+import {select, classNames, settings, templates} from './settings.js';
 
 const app = {
   
