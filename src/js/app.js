@@ -1,6 +1,6 @@
 import {Cart} from './components/Cart.js';
 import {Product} from './components/Product.js';
-import {select, settings} from './settings.js';
+import {select, settings, classNames} from './settings.js';
 
 const app = {
   
@@ -88,6 +88,18 @@ const app = {
         thisApp.activatePage();
       });
     };
+  },
+
+  activatePage: function(pageId) {
+    const thisApp = this;
+
+    for(let link of thisApp.navLinks) {
+      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+    }
+
+    for (let link of thisApp.pages) {
+      link.classList.toggle(classNames.nav.active, link.thisApp.pages.id == pageId);
+    }
   }
 
 
