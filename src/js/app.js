@@ -64,8 +64,33 @@ const app = {
     // console.log('templates:', templates);
 
     thisApp.initCart();
+    thisApp.initPages();
     thisApp.initData();
   },
+
+  initPages: function() {
+    const thisApp = this;
+
+    thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
+    thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
+
+    thisApp.activatePage(thisApp.pages[0].id);
+
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function(event) {
+        const clickedElement = this;
+        event.preventDefault();
+
+        /* TODO: get page id from href */
+        clickedElement = thisApp.pages.getAttribute('href');
+        clickedElement.thisApp.pages.classList('');
+        /* TODO: active pages */
+        thisApp.activatePage();
+      });
+    };
+  }
+
+
 };
 
 app.init();
