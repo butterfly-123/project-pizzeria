@@ -78,16 +78,16 @@ const app = {
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
-        const clickedElement = this;
+        let clickedElement = this;
         event.preventDefault();
 
         /* TODO: get page id from href */
-        clickedElement = thisApp.pages.getAttribute('href');
-        clickedElement.thisApp.pages.classList('');
+        clickedElement = thisApp.pages.id.getAttribute('href');
+        clickedElement.thisApp.pages.id.classList('');
         /* TODO: active pages */
         thisApp.activatePage();
       });
-    };
+    }
   },
 
   activatePage: function(pageId) {
