@@ -48,9 +48,7 @@ export class Cart {
 
     thisCart.dom.wrapper = element;
 
-    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(
-      select.cart.productList
-    );
+    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
 
     // console.log('thisCart.dom.wrapper: ', thisCart.dom.wrapper);
 

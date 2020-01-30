@@ -118,9 +118,9 @@ const app = {
   },
 
   initBooking: function() {
-    const thisApp = this;
+    // const thisApp = this;
 
-    const conteinerWidget = document.querySelector(select.containerOf.booking);
+    // const conteinerWidget = document.querySelector(select.containerOf.booking);
   }
 };
 
