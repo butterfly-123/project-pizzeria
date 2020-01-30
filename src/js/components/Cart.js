@@ -69,9 +69,7 @@ export class Cart {
     ];
 
     for (let key of thisCart.renderTotalsKeys) {
-      thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(
-        select.cart[key]
-      );
+      thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
     }
   }
 

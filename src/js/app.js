@@ -95,6 +95,7 @@ const app = {
         /* TODO: get page id from href */
         clickedElement = thisApp.pages.id.getAttribute('href');
         clickedElement.thisApp.pages.id.classList('');
+        
         /* TODO: active pages */
         thisApp.activatePage();
       });
