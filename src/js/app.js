@@ -1,6 +1,7 @@
 import {Cart} from './components/Cart.js';
 import {Product} from './components/Product.js';
 import {select, settings, classNames} from './settings.js';
+// import {Booking} from './components/Booking.js';
 
 const app = {
   
@@ -79,7 +80,7 @@ const app = {
     if(window.location.hash.length > 2) {
       const idFromHash = window.location.hash.replace('#/', ' ');
 
-      pagesMatchingHash = thisApp.ages.filter(function(page) {
+      pagesMatchingHash = thisApp.pages.filter(function(page) {
         return page.id == idFromHash;
       });
     }
@@ -117,12 +118,14 @@ const app = {
     
   },
 
+  /*
   initBooking: function() {
-    // const thisApp = this;
+    const thisApp = this;
 
-    // const conteinerWidget = document.querySelector(select.containerOf.booking);
+    const conteinerWidget = document.querySelector(select.containerOf.booking);
   }
+  */
 };
 
 app.init();
-app.initBooking();
+//app.initBooking();
