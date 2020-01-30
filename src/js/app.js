@@ -120,12 +120,9 @@ const app = {
   initBooking: function() {
     const thisApp = this;
 
-    thisApp.element = thisApp.element.querySelector(select.containerOf.booking);
-
-    
+    const conteinerWidget = document.querySelector(select.containerOf.booking);
   }
-
-
 };
 
 app.init();
+app.initBooking();
