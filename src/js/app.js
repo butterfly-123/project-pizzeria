@@ -115,6 +115,14 @@ const app = {
 
     window.location.hash = '#/' + pageId;
     
+  },
+
+  initBooking: function() {
+    const thisApp = this;
+
+    thisApp.element = thisApp.element.querySelector(select.containerOf.booking);
+
+    
   }
 
 
