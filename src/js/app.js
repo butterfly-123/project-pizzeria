@@ -98,7 +98,9 @@ const app = {
     }
 
     for (let link of thisApp.pages) {
-      link.classList.toggle(classNames.nav.active, link.thisApp.pages.id == pageId);
+      link.classList.toggle(classNames.nav.active, link.getAttribute('id') == pageId);
+      console.log('link: ', link);
+      console.log('thisApp.pages: ', thisApp.pages);
     }
   }
 
