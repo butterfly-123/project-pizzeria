@@ -140,14 +140,16 @@ const app = {
     
   },
 
-  /*
   initBooking: function() {
     const thisApp = this;
 
     const conteinerWidget = document.querySelector(select.containerOf.booking);
+  },
+
+  initWidget: function() {
+    const thisBooking = this;
   }
-  */
 };
 
 app.init();
-//app.initBooking();
+app.initBooking();
