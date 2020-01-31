@@ -1,6 +1,6 @@
 import {Cart} from './components/Cart.js';
 import {Product} from './components/Product.js';
-import {select, settings, classNames, templates} from './settings.js';
+import {select, settings, classNames} from './settings.js';
 // import {Booking} from './components/Booking.js';
 
 const app = {
@@ -75,6 +75,10 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
  
+    const idFromHash = window.location.hash.replace('#/', '');
+ 
+    let pageMatchingHash = thisApp.pages[0].id;
+
     let pagesMatchingHash = [];
 
     if(window.location.hash.length > 2) {
@@ -86,6 +90,7 @@ const app = {
     }
 
     thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
+ 
  
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
@@ -116,7 +121,24 @@ const app = {
       });
  
     }
-  }
+  },
+
+  activatePage: function(pageId) {
+    const thisApp = this;
+
+    for(let link of thisApp.navLinks) {
+      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+    }
+
+    for (let link of thisApp.pages) {
+      link.classList.toggle(classNames.nav.active, link.getAttribute('id') == pageId);
+      console.log('link: ', link);
+      console.log('thisApp.pages: ', thisApp.pages);
+    }
+
+    window.location.hash = '#/' + pageId;
+    
+  },
 
   /*
   initBooking: function() {
