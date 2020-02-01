@@ -1,6 +1,7 @@
-import {select, settings} from './settings.js';
+import {select, settings} from '../settings.js';
 import {BaseWidget} from './BaseWidget.js';
 import {utils} from '../utils.js';
+import flatpickr from "flatpickr";
 
 export class DatePicker extends BaseWidget {
   constructor(wrapper) {
@@ -16,5 +17,13 @@ export class DatePicker extends BaseWidget {
   initPlugin() {
     thisWidget.minDate = new Date(thisWidget.value);
     thisWidget.maxDate = settings.datePicker.maxDaysInFuture;
+
+    const options = {
+      mode: "range",
+      minDate: "today",
+      dateFormat: "Y-m-d"
+    };
+
+    flatpickr(element, options);
   }
 }
