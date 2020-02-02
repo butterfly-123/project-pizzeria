@@ -5,35 +5,38 @@ import {DatePicker} from './DatePicker.js';
 import {HourPicker} from './HourPicker.js';
 
 export class Booking{
-  constructor(element){
+  constructor(reservWidgetContainer){
     const thisBooking = this;
  
-    thisBooking.render(element);
+    thisBooking.render(reservWidgetContainer);
     thisBooking.initWidgets();
  
   }
  
-  render(element){
+  render(bookingContainer){
     const thisBooking = this;
  
     const generatedHTML = templates.bookingWidget();
  
     thisBooking.dom = {};
  
-    thisBooking.dom.wrapper = element;
+    thisBooking.dom.wrapper = bookingContainer;
  
     thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHTML);
  
-    element.appendChild(thisBooking.dom.wrapper);
+    bookingContainer.appendChild(thisBooking.dom.wrapper);
  
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
- 
+    console.log(thisBooking.dom.peopleAmount);
+
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
+    console.log(thisBooking.dom.hoursAmount);
 
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
+    console.log(thisBooking.dom.datePicker);
 
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
- 
+    console.log(thisBooking.dom.hourPicker);
   }
  
   initWidgets(){

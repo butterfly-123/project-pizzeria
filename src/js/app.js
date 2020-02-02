@@ -67,59 +67,43 @@ const app = {
     thisApp.initCart();
     thisApp.initPages();
     thisApp.initData();
+    thisApp.initBooking();
   },
 
-  initPages: function(){
+  initPages: function() {
     const thisApp = this;
- 
+
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
- 
+    console.log(thisApp.navLinks);
     const idFromHash = window.location.hash.replace('#/', '');
- 
+
     let pageMatchingHash = thisApp.pages[0].id;
 
-    let pagesMatchingHash = [];
-
-    if(window.location.hash.length > 2) {
-      const idFromHash = window.location.hash.replace('#/', ' ');
-
-      pagesMatchingHash = thisApp.pages.filter(function(page) {
-        return page.id == idFromHash;
-      });
-    }
-
-    thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
- 
- 
-    for(let page of thisApp.pages){
-      if(page.id == idFromHash){
+    for (let page of thisApp.pages) {
+      if (page.id == idFromHash) {
         pageMatchingHash = page.id;
         break;
       }
     }
- 
+
     thisApp.activatePage(pageMatchingHash);
- 
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
+
+    for (let link of thisApp.navLinks) {
+      link.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
- 
-        /* get id from href attribute */
- 
+
+        // get page id from href attribute
         const id = clickedElement.getAttribute('href').replace('#', '');
- 
-        /* run thisApp.activatePage with that id */
- 
+
+        // run thisApp.activePage whit that id
         thisApp.activatePage(id);
- 
-        /* change URL hash */
- 
+
+        // change URL hash
+
         window.location.hash = '#/' + id;
- 
       });
- 
     }
   },
 
