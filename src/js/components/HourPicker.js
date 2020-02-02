@@ -30,6 +30,7 @@ export class HourPicker extends BaseWidget {
   }
 
   renderValue() {
+    const thisWidget = this;
     thisWidget.dom.output = thisWidget.dom.input;
 
     thisWidget.dom.input.addEventListener('imput', thisWidget.value);
