@@ -11,7 +11,6 @@ export class Booking{
     thisBooking.render(reservWidgetContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
   }
 
   getData(){
@@ -31,6 +30,8 @@ export class Booking{
     };
   
     console.log('getData params', params);
+
+    thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
   }
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
