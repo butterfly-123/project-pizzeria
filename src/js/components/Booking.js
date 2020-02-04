@@ -5,6 +5,8 @@ import {DatePicker} from './DatePicker.js';
 import {HourPicker} from './HourPicker.js';
 
 export class Booking{
+  
+  // Z kad jest wzięty ten argument w constructor i co on ma za zadanie?
   constructor(reservWidgetContainer){
     const thisBooking = this;
  
@@ -15,54 +17,96 @@ export class Booking{
 
   getData(){
     const thisBooking = this;
-  
-    const startEndDates = {};
-    startEndDates[settings.db.dateStartParamKey] = utils.dateToStr(thisBooking.datePicker.minDate);
-    startEndDates[settings.db.dateEndParamKey] = utils.dateToStr(thisBooking.datePicker.maxDate);
-  
-    const endDate = {};
-    endDate[settings.db.dateEndParamKey] = startEndDates[settings.db.dateEndParamKey];
-  
+ 
+    // Rozumiem, ze ta zmienna przypisuje z utils poczatkową i koncowa date?
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+ 
+    // Ta zmienna ma przypisane daty rezerwacji tak? I jak je sie przypisało? Skoro w settings nie ma np. endDateParam? 
     const params = {
-      booking: utils.queryParams(startEndDates),
-      eventsCurrent: settings.db.notRepeatParam + '&' + utils.queryParams(startEndDates),
-      eventsRepeat: settings.db.repeatParam + '&' + utils.queryParams(endDate),
+      booking: [
+        startDateParam,      
+        endDateParam,      
+      ],
+      eventCurrent:[
+        settings.db.notRepeatParam,
+        startDateParam,  
+        endDateParam,
+      ],
+      eventsRepeat:[
+        settings.db.repeatParam,
+        endDateParam,
+      ],
     };
-  
+ 
     console.log('getData params', params);
-
-    thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
-  }
-
-  parseData(bookings, eventsCurrent, eventsRepeat) {
-    const thisBooking = this;
-    thisBooking.booked = {};
-
-    console.log('eventsCurrent: ', eventsCurrent);
-
+ 
+    // To są adresy filtrujące dane, tak? Co to oznacza?
     const urls = {
-      booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking,
-      eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent,
-      eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat,
+      booking:      settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
+      eventCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventCurrent.join('&'),
+      eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
     };
 
+    console.log('urls: ', urls);
+ 
+    // Promise - wysyła 3 prozby o rezerwacje
     Promise.all([
-      fetch(urls.booking), // 5s
-      fetch(urls.eventsCurrent), // 3s
-      fetch(urls.eventsRepeat), // 2s
+      fetch(urls.booking),
+      fetch(urls.eventCurrent),
+      fetch(urls.eventsRepeat),
     ])
-      .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
+      // Tu niewiem co sie dzieje
+      .then(function(allResponses){
+        const bookingResponse = allResponses[0];
+        const eventCurrentResponse = allResponses[1];
+        const eventsRepeatResponse = allResponses[2];
         return Promise.all([
-          bookingsResponse.json(),
-          eventsCurrentResponse.json(),
+          bookingResponse.json(),
+          eventCurrentResponse.json(),
           eventsRepeatResponse.json(),
         ]);
       })
-      .then(function([bookings, eventsCurrent, eventsRepeat]){
-        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+      // A tutaj jest odpowiedz na prozbe, tak? 
+      .then(function([booking, eventCurrent, eventsRepeat]){
+        console.log(booking);
+        console.log(eventCurrent);
+        console.log(eventsRepeat);
+        thisBooking.parseData(booking, eventCurrent, eventsRepeat);
       });
   }
+
+  parseData(booking, eventCurrent, eventsRepeat){
+    const thisBooking = this;
  
+    thisBooking.booked = {};
+
+    // Wyslanie rezerwacji
+    for(let item of booking){
+      thisBooking.makeBooked(item.data, item.hour, item.duration, item.table);
+    }
+ 
+    // Sprawdzenie czy jest wolne miesce o tej porze i godzinie dany stolik?
+    for(let item of eventCurrent){
+      thisBooking.makeBooked(item.data, item.hour, item.duration, item.table);
+    }
+ 
+    const minDate = thisBooking.datePicker.minDate;
+    const maxDate = thisBooking.datePicker.maxDate;
+ 
+    // Tu nie wiem... Jesli jest codziennie to..
+    for(let item of eventsRepeat){
+      if(item.repeat == 'daily'){
+        for(let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){
+          thisBooking.makeBooked(utils.dateToStr(loopDate), item.hour, item.duration, item.table);
+        }
+      }    
+    }
+    thisBooking.updateDOM();
+    console.log(thisBooking.booked);
+  }
+ 
+  // Tu tez fajnie by bylo od pocztku o co chodzi :)
   render(bookingContainer){
     const thisBooking = this;
  

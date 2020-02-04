@@ -1,6 +1,7 @@
 import {settings, select} from '../settings.js';
 import {BaseWidget} from './BaseWidget.js';
 
+// Co oznacza extends?
 export class AmountWidget extends BaseWidget {
   constructor(wrapper) {
     super(wrapper, settings.amountWidget.defaultValue);
