@@ -107,7 +107,7 @@ export class Booking{
     console.log(thisBooking.booked);
   }
 
-  makeBooked(data, hour, duration, table) {
+  makeBooked() {
     
   }
  
