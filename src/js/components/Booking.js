@@ -81,16 +81,17 @@ export class Booking{
  
     thisBooking.booked = {};
 
-    // Wyslanie rezerwacji
+    // Pozycja rezerwacji (data, godzina, czas trwania, stolik)
     for(let item of booking){
       thisBooking.makeBooked(item.data, item.hour, item.duration, item.table);
     }
  
-    // Sprawdzenie czy jest wolne miesce o tej porze i godzinie dany stolik?
+    // Sprawdzenie pozycji rezerwacji, czy jest mozliwa?
     for(let item of eventCurrent){
       thisBooking.makeBooked(item.data, item.hour, item.duration, item.table);
     }
  
+    // Dlaczego te mienne sa tutaj uzyte?
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
  
@@ -104,6 +105,10 @@ export class Booking{
     }
     thisBooking.updateDOM();
     console.log(thisBooking.booked);
+  }
+
+  makeBooked(data, hour, duration, table) {
+    
   }
  
   // Tu tez fajnie by bylo od pocztku o co chodzi :)
