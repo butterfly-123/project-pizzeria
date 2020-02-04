@@ -104,10 +104,16 @@ export class Booking {
     console.log(thisBooking.booked);
   }
  
-  // makeBooked() {
-    // const thisBooking = this;
+  makeBooked(data, hour, duration, table) {
+    const thisBooking = this;
 
-  // }
+    // Add to 'thisBooking.booked' first 0.5 h event block
+
+    // Add to 'thisBooking.booked' next time event block to end event
+
+    // Add loop in which add 30 minutes to end event
+  }
+
   render(bookingContainer){
     const thisBooking = this;
  
