@@ -4,7 +4,7 @@ import {AmountWidget} from './AmountWidget.js';
 import {DatePicker} from './DatePicker.js';
 import {HourPicker} from './HourPicker.js';
 
-export class Booking{
+export class Booking {
   
   // Z kad jest wzięty ten argument w constructor i co on ma za zadanie?
   constructor(reservWidgetContainer){
@@ -56,7 +56,6 @@ export class Booking{
       fetch(urls.eventCurrent),
       fetch(urls.eventsRepeat),
     ])
-      // Tu niewiem co sie dzieje
       .then(function(allResponses){
         const bookingResponse = allResponses[0];
         const eventCurrentResponse = allResponses[1];
@@ -67,7 +66,7 @@ export class Booking{
           eventsRepeatResponse.json(),
         ]);
       })
-      // A tutaj jest odpowiedz na prozbe, tak? 
+      // A tutaj jest odpowiedz na prozbe 
       .then(function([booking, eventCurrent, eventsRepeat]){
         console.log(booking);
         console.log(eventCurrent);
@@ -91,11 +90,9 @@ export class Booking{
       thisBooking.makeBooked(item.data, item.hour, item.duration, item.table);
     }
  
-    // Dlaczego te mienne sa tutaj uzyte?
     const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
  
-    // Tu nie wiem... Jesli jest codziennie to..
     for(let item of eventsRepeat){
       if(item.repeat == 'daily'){
         for(let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){
@@ -106,12 +103,11 @@ export class Booking{
     thisBooking.updateDOM();
     console.log(thisBooking.booked);
   }
-
-  makeBooked() {
-    
-  }
  
-  // Tu tez fajnie by bylo od pocztku o co chodzi :)
+  // makeBooked() {
+    // const thisBooking = this;
+
+  // }
   render(bookingContainer){
     const thisBooking = this;
  
@@ -123,6 +119,7 @@ export class Booking{
  
     thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHTML);
  
+    // co to bookingContainer i co do niego sie dokleja
     bookingContainer.appendChild(thisBooking.dom.wrapper);
  
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
