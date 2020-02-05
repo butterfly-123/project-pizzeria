@@ -107,7 +107,7 @@ export class Booking {
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
  
-    // Co oznacza 'typeof'?
+    // Co oznacza 'typeof'? Skąd jest ta 'date'?
     if (typeof thisBooking.booked[date] == 'undefined') {
       thisBooking.booked[date] = {};
     }
