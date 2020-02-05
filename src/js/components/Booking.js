@@ -103,16 +103,33 @@ export class Booking {
     console.log(thisBooking.booked);
   }
  
-  /* makeBooked(data, hour, duration, table) {
+  // Jakie dokladnie zadanie ma ta funkcja?
+  makeBooked(date, hour, duration, table) {
     const thisBooking = this;
-
-    // Add to 'thisBooking.booked' first 0.5 h event block - niewiem gdzie jest zapisane to 30 min
-
-    // Add to 'thisBooking.booked' next time event block to end event
-
-    // Add loop in which add 30 minutes to end event
+ 
+    // Co oznacza 'typeof'?
+    if (typeof thisBooking.booked[date] == 'undefined') {
+      thisBooking.booked[date] = {};
+    }
+ 
+    const startHour = utils.hourToNumber(hour);
+ 
+    for (
+      // Skad jest to 'startHour'?
+      let hourBlock = startHour;
+      // Gdzie jest przypisane to 'duration', ze on wie ile ono wynosi?
+      hourBlock < startHour + duration;
+      hourBlock += 0.5
+    ) {
+      // console.log('loop', hourBlock);
+      if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
+        thisBooking.booked[date][hourBlock] = [];
+      }
+ 
+      // Gdzie znajduje sie wartosc tego 'table'? Dlaczego nie wyrzuca undefined table
+      thisBooking.booked[date][hourBlock].push(table);
+    }
   }
-  */
 
   render(bookingContainer){
     const thisBooking = this;
