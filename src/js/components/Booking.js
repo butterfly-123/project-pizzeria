@@ -117,7 +117,7 @@ export class Booking {
     for (
       // Skad jest to 'startHour'?
       let hourBlock = startHour;
-      // Gdzie jest przypisane to 'duration', ze on wie ile ono wynosi?
+      // Gdzie jest przypisane to 'duration'?
       hourBlock < startHour + duration;
       hourBlock += 0.5
     ) {
@@ -128,6 +128,24 @@ export class Booking {
  
       // Gdzie znajduje sie wartosc tego 'table'? Dlaczego nie wyrzuca undefined table
       thisBooking.booked[date][hourBlock].push(table);
+    }
+  }
+
+  updateDOM() {
+    const thisBooking = this;
+    console.log('Dowolny tekst w updateDOM');
+
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    thisBooking.dom.tables = thisBooking.dom.tables.querySelector(settings.booking.tableIdAttribute);
+
+    for (let table of thisBooking.dom.tables) {
+      if (!thisBooking.booked[thisBooking.date],
+      !thisBooking.booked[thisBooking.date], 
+      ![thisBooking.hour],
+      table = thisBooking.booked[thisBooking.date][thisBooking.hour]) {
+      table = classNames.booking.tableBooked;
+      }
     }
   }
 
@@ -156,6 +174,10 @@ export class Booking {
 
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     console.log(thisBooking.dom.hourPicker);
+
+    // Dlaczego mi sie consola nie wyswietla?
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    console.log(thisBooking.dom.tables);
   }
  
   initWidgets(){
@@ -165,8 +187,12 @@ export class Booking {
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
+
+    // Czy ten 'addEventListener' jest dobrze napisany?
+    thisBooking.dom.wrapper.addEventListener('updated', function() {
+      thisBooking.dom.wrapper.updateDOM();
+    });
   }
- 
 }
 
 
