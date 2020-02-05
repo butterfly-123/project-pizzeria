@@ -144,7 +144,10 @@ export class Booking {
       !thisBooking.booked[thisBooking.date], 
       ![thisBooking.hour],
       table = thisBooking.booked[thisBooking.date][thisBooking.hour]) {
-      table = classNames.booking.tableBooked;
+        const tableBooked = thisBooking.dom.tables.querySelector(classNames.booking.tableBooked);
+        table.classList.add(tableBooked); 
+      } else {
+        table.classList.remove(tableBooked);
       }
     }
   }
