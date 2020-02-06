@@ -121,12 +121,12 @@ export class Booking {
       hourBlock < startHour + duration;
       hourBlock += 0.5
     ) {
-      // console.log('loop', hourBlock);
+      console.log('loop', hourBlock);
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
  
-      // Gdzie znajduje sie wartosc tego 'table'? Dlaczego nie wyrzuca undefined table
+      // Gdzie znajduje sie wartosc tego 'table'? Dlaczego nie wyrzuca undefined table skoro nigdzie nie ma go przypisanego?
       thisBooking.booked[date][hourBlock].push(table);
     }
   }
