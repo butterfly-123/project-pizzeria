@@ -124,11 +124,16 @@ const app = {
     
   },
 
-  initBooking: function() {
+  initBooking() {
     const thisApp = this;
 
-    const bookingWidgetElem = document.querySelector(select.containerOf.booking);
-    thisApp.bookingWidgetElem = new Booking(bookingWidgetElem);
+    // znajdz container widgetu do rezerwacji stron
+    const reservWidgetContainer = document.querySelector(
+      select.containerOf.booking
+    );
+
+    // tworzy nowa instancje klasy booking
+    thisApp.booking = new Booking(reservWidgetContainer);
   }
 };
 

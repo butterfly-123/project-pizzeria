@@ -1,4 +1,4 @@
-import {templates, select, settings} from './../settings.js';
+import {templates, select, classNames, settings} from './../settings.js';
 import {utils} from './../utils.js';
 import {AmountWidget} from './AmountWidget.js';
 import {DatePicker} from './DatePicker.js';
@@ -7,10 +7,10 @@ import {HourPicker} from './HourPicker.js';
 export class Booking {
   
   // Z kad jest wzięty ten argument w constructor i co on ma za zadanie?
-  constructor(reservWidgetContainer){
+  constructor(element){
     const thisBooking = this;
  
-    thisBooking.render(reservWidgetContainer);
+    thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
   }
@@ -23,19 +23,9 @@ export class Booking {
     const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
  
     const params = {
-      booking: [
-        startDateParam,      
-        endDateParam,      
-      ],
-      eventCurrent:[
-        settings.db.notRepeatParam,
-        startDateParam,  
-        endDateParam,
-      ],
-      eventsRepeat:[
-        settings.db.repeatParam,
-        endDateParam,
-      ],
+      booking: [startDateParam, endDateParam],
+      eventCurrent:[settings.db.notRepeatParam, startDateParam, endDateParam],
+      eventsRepeat:[settings.db.repeatParam, endDateParam],
     };
  
     console.log('getData params', params);
@@ -47,7 +37,7 @@ export class Booking {
       eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
     };
 
-    console.log('urls: ', urls);
+    // console.log('urls: ', urls);
  
     // Promise - wysyła 3 prozby o rezerwacje
     Promise.all([
@@ -99,8 +89,10 @@ export class Booking {
         }
       }    
     }
+
+    // console.log('thisBooking.booked', thisBooking.booked);
+
     thisBooking.updateDOM();
-    console.log(thisBooking.booked);
   }
  
   // Jakie dokladnie zadanie ma ta funkcja?
@@ -112,42 +104,52 @@ export class Booking {
       thisBooking.booked[date] = {};
     }
  
-    const startHour = utils.hourToNumber(hour);
+    const startHour = utils.numberToHour(hour);
  
     for (
-      // Skad jest to 'startHour'?
       let hourBlock = startHour;
-      // Gdzie jest przypisane to 'duration'?
       hourBlock < startHour + duration;
       hourBlock += 0.5
     ) {
-      console.log('loop', hourBlock);
+      // console.log('loop', hourBlock);
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
  
-      // Gdzie znajduje sie wartosc tego 'table'? Dlaczego nie wyrzuca undefined table skoro nigdzie nie ma go przypisanego?
       thisBooking.booked[date][hourBlock].push(table);
     }
   }
 
   updateDOM() {
     const thisBooking = this;
-    console.log('Dowolny tekst w updateDOM');
 
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    thisBooking.dom.tables = thisBooking.dom.tables.querySelector(settings.booking.tableIdAttribute);
+
+    let allAvailable = false;
+
+    if (
+      typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
+      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ==
+        'undefined'
+    ) {
+      allAvailable = true;
+    }
 
     for (let table of thisBooking.dom.tables) {
-      if (!thisBooking.booked[thisBooking.date],
-      !thisBooking.booked[thisBooking.date], 
-      ![thisBooking.hour],
-      table = thisBooking.booked[thisBooking.date][thisBooking.hour]) {
-        const tableBooked = thisBooking.dom.tables.querySelector(classNames.booking.tableBooked);
-        table.classList.add(tableBooked); 
+      console.log(table);
+      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      if (!isNaN(tableId)) {
+        tableId = parseInt(tableId);
+      }
+
+      if (
+        !allAvailable &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
+      ) {
+        table.classList.add(classNames.booking.tableBooked);
       } else {
-        table.classList.remove(tableBooked);
+        table.classList.remove(classNames.booking.tableBooked);
       }
     }
   }
@@ -163,7 +165,6 @@ export class Booking {
  
     thisBooking.dom.wrapper = utils.createDOMFromHTML(generatedHTML);
  
-    // co to bookingContainer i co do niego sie dokleja
     bookingContainer.appendChild(thisBooking.dom.wrapper);
  
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
@@ -178,7 +179,6 @@ export class Booking {
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     console.log(thisBooking.dom.hourPicker);
 
-    // Dlaczego mi sie consola nie wyswietla?
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     console.log(thisBooking.dom.tables);
   }
@@ -191,9 +191,8 @@ export class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    // Czy ten 'addEventListener' jest dobrze napisany?
     thisBooking.dom.wrapper.addEventListener('updated', function() {
-      thisBooking.dom.wrapper.updateDOM();
+      thisBooking.updateDOM();
     });
   }
 }
