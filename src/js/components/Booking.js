@@ -168,7 +168,7 @@ export class Booking {
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     console.log(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelector(select.booking.tables);
     console.log(thisBooking.dom.tables);
   }
  
