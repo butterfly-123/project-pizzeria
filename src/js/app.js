@@ -4,14 +4,15 @@ import {select, settings, classNames} from './settings.js';
 import {Booking} from './components/Booking.js';
 
 const app = {
-  
   initMenu: function() {
-
     const thisApp = this;
     // console.log('thisApp.data: ', thisApp.data);
 
     for (let productData in thisApp.data.products) {
-      new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
+      new Product(
+        thisApp.data.products[productData].id,
+        thisApp.data.products[productData]
+      );
     }
   },
 
@@ -39,7 +40,6 @@ const app = {
       });
 
     console.log('thisApp.data: ', JSON.stringify(thisApp.data));
-
   },
 
   initCart: function() {
@@ -56,8 +56,8 @@ const app = {
   },
 
   init: function() {
-    const thisApp = this;   
-  
+    const thisApp = this;
+
     // console.log('*** App starting ***');
     // console.log('thisApp:', thisApp);
     // console.log('classNames:', classNames);
@@ -110,18 +110,23 @@ const app = {
   activatePage: function(pageId) {
     const thisApp = this;
 
-    for(let link of thisApp.navLinks) {
-      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+    for (let link of thisApp.navLinks) {
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') == '#' + pageId
+      );
     }
 
     for (let link of thisApp.pages) {
-      link.classList.toggle(classNames.nav.active, link.getAttribute('id') == pageId);
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('id') == pageId
+      );
       console.log('link: ', link);
       console.log('thisApp.pages: ', thisApp.pages);
     }
 
     window.location.hash = '#/' + pageId;
-    
   },
 
   initBooking() {
