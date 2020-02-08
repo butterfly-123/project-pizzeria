@@ -90,21 +90,21 @@ export class Booking {
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
 
+    // Dlaczego 'undefined'?
     if (typeof thisBooking.booked[date] == 'undefined') {
       thisBooking.booked[date] = {};
+      // console.log('thisBooking.booked[date]: ', thisBooking.booked[date]);
     }
 
     const startHour = utils.hourToNumber(hour);
+    // console.log('startHour: ', startHour);
 
-    for (
-      let hourBlock = startHour;
-      hourBlock < startHour + duration;
-      hourBlock += 0.5
-    ) {
-      // console.log('loop', hourBlock);
+    for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
+      console.log('loop', hourBlock);
 
       if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
+        console.log('thisBooking.booked[date][hourBlock]: ', thisBooking.booked[date][hourBlock]);
       }
 
       thisBooking.booked[date][hourBlock].push(table);
