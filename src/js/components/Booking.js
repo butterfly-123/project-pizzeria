@@ -142,7 +142,18 @@ export class Booking {
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+
+      table.addEventListener('click', function () {
+        console.log('click', table);
+        let choosenTable = table.classList.contains(classNames.booking.tableBooked);
+        console.log(choosenTable);
+      });
     }
+  }
+
+  sendOrder() {
+    // const thisBooking = this;
+
   }
 
   render(wrapper) {
@@ -182,6 +193,11 @@ export class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
+    });
+
+    thisBooking.dom.wrapper.addEventListener('submit', function () {
+      event.preventDefault();
+      thisBooking.sendBooking();
     });
   }
 }
