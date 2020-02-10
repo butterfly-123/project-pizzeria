@@ -39,7 +39,7 @@ const app = {
         thisApp.initMenu();
       });
 
-    console.log('thisApp.data: ', JSON.stringify(thisApp.data));
+    // console.log('thisApp.data: ', JSON.stringify(thisApp.data));
   },
 
   initCart: function() {
@@ -75,7 +75,7 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    console.log(thisApp.navLinks);
+    // console.log(thisApp.navLinks);
     const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id;
@@ -122,8 +122,8 @@ const app = {
         classNames.nav.active,
         link.getAttribute('id') == pageId
       );
-      console.log('link: ', link);
-      console.log('thisApp.pages: ', thisApp.pages);
+      // console.log('link: ', link);
+      // console.log('thisApp.pages: ', thisApp.pages);
     }
 
     window.location.hash = '#/' + pageId;

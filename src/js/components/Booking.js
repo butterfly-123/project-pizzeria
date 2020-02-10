@@ -148,12 +148,47 @@ export class Booking {
         let choosenTable = table.classList.contains(classNames.booking.tableBooked);
         console.log(choosenTable);
       });
+
+      
     }
   }
 
   sendOrder() {
-    // const thisBooking = this;
+    const thisBooking = this;
 
+    const bookingUrl = settings.db.url + '/' + settings.db.booking;
+
+    const bookingPayload = {
+      date: thisBooking.date,
+      hour: thisBooking.hour,
+      table: thisBooking.clickedTable,
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
+      address: thisBooking.dom.address.value,
+      phone: thisBooking.dom.phone.value,
+
+      tables: []
+    };
+
+    for (let table of thisBooking.tables) {
+      bookingPayload.tables.push(table.getData());
+    }
+    
+    const bookingOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingPayload)
+    };
+
+    fetch(bookingUrl, bookingOptions)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
   }
 
   render(wrapper) {
