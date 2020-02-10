@@ -119,11 +119,9 @@ export class Booking {
 
     let allAvailable = false;
 
-    if (
-      typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ==
-        'undefined'
-    ) {
+    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
+      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined') 
+    {
       allAvailable = true;
     }
 
@@ -134,10 +132,9 @@ export class Booking {
         tableId = parseInt(tableId);
       }
 
-      if (
-        !allAvailable &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
-      ) {
+      if (!allAvailable && 
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)) 
+      {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
@@ -158,7 +155,7 @@ export class Booking {
     }
   }
 
-  sendOrder() {
+  sendBooking() {
     const thisBooking = this;
 
     const bookingUrl = settings.db.url + '/' + settings.db.booking;
