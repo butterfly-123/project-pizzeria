@@ -144,12 +144,17 @@ export class Booking {
       }
 
       table.addEventListener('click', function () {
-        console.log('click', table);
+        // console.log('click', table);
         let choosenTable = table.classList.contains(classNames.booking.tableBooked);
         console.log(choosenTable);
-      });
 
-      
+        if (!choosenTable) {
+          table.classList.add(classNames.booking.tableBooked);
+          thisBooking.clickedTable = tableId;
+        } else {
+          console.log('this table is booked now');
+        }
+      });
     }
   }
 
@@ -170,9 +175,11 @@ export class Booking {
       tables: []
     };
 
-    for (let table of thisBooking.tables) {
-      bookingPayload.tables.push(table.getData());
-    }
+    for (let table of thisBooking.dom.starters) {
+      if (table.checked == true) {
+        bookingPayload.tables.push(table.value);
+      }
+    }	 
     
     const bookingOptions = {
       method: 'POST',
@@ -216,6 +223,15 @@ export class Booking {
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     console.log(thisBooking.dom.tables);
+
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+    console.log(thisBooking.dom.address);
+
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    console.log(thisBooking.dom.phone);
+
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starter);
+    console.log(thisBooking.dom.starters);
   }
  
   initWidgets(){
