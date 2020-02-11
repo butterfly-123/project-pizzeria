@@ -41,11 +41,13 @@ export class AmountWidget extends BaseWidget {
     thisWidget.dom.linkDecrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value - 1);
+      console.log(thisWidget.dom.linkDecrease);
     });
     
     thisWidget.dom.linkIncrease.addEventListener('click', function(event) {
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
+      console.log(thisWidget.dom.linkIncrease);
     });
   }
 
