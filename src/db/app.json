@@ -255,5 +255,15 @@
         "starters": ["lemonWater"]
       }
     ],
-    "booking": []
+    "booking": [
+      {
+        "date": "2020-02-11",
+        "table": 1,
+        "hour": "12:00",
+        "repeat": false,
+        "duration": 1,
+        "ppl": 1,
+        "id": 3
+      }
+    ]
   }

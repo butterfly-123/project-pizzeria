@@ -167,9 +167,7 @@ export class Booking {
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       address: thisBooking.dom.address.value,
-      phone: thisBooking.dom.phone.value,
-
-      tables: []
+      phone: thisBooking.dom.phone.value
     };
 
     for (let table of thisBooking.dom.starters) {

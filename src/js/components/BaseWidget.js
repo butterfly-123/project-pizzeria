@@ -19,6 +19,7 @@ export class BaseWidget {
 
     const newValue = thisWidget.parseValue(value);
 
+    console.log('ANETA');
     if (newValue != thisWidget.correctValue && thisWidget.isValid(newValue)) {
       thisWidget.correctValue = newValue;
       thisWidget.announce();
