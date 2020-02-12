@@ -1,0 +1,171 @@
+.home-widget {
+  margin: 0 auto;
+  margin-top: 4px;
+  border-radius: 5px;
+  width: 700px;
+  background: white;
+  font-family: $font-text;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lato';
+
+  .home-nav {
+    width: 605px;
+    background: white;
+    text-align: center;
+    margin-left: 49px;
+    margin-top: 70px;
+    color: #FFFFF2;
+
+    .order {
+      width: 300px;
+      height: 120px;
+      background-image: url("../images/pizza-1.jpg");
+      background-size: cover;
+      float: left;
+      margin-top: 5px;
+      border-radius: 3px;
+      color: #FFFFF2;
+      border-radius: 3px;
+
+      .text-display {
+        display: none;
+      }
+
+      h2 {
+        padding-top: 20px;
+        font-size: x-large;
+      }
+    }
+
+    .order:hover {
+      cursor: pointer;
+
+      h2 {
+        padding-top: 0;
+        transition: 0.5s;
+      }
+
+      p {
+        display: block;
+        color: white;
+        transition: 0.5s;
+      }
+    }
+
+    .booking {
+      width: 300px;
+      height: 120px;
+      background-image: url("../images/pizza-2.jpg");
+      background-size: cover;
+      float: left;
+      margin-top: 5px;
+      border-radius: 3px;
+      margin-left: 4px;
+      color: #FFFFF2;
+      border-radius: 3px;
+
+      h2 {
+        padding-top: 20px;
+        font-size: x-large;
+      }
+    }
+
+    .open-hour {
+      width: 100%;
+      height: 120px;
+      background: #FF6A6A;
+      float: left;
+      border-radius: 3px;
+      margin-top: 6px;
+      color: #FFFFF2;
+
+      h2 {
+        padding-top: 10px;
+        font-size: x-large;
+      }
+
+      p {
+        margin-top: -20px;
+      }
+    }
+  }
+
+  .home-text {
+    width: 605px;
+    background: white;
+    text-align: center;
+    margin-left: 47px;
+    margin-top: 100px;
+    color: #FFFFFF;
+
+    .picture {
+      width: 194px;
+      height: 195px;
+      background-image: url("../images/pizza-3.jpg");
+      background-size: cover;
+      float: left;
+      border-radius: 3px;
+    }
+
+    h4 {
+      color: #4d4d4d;
+      text-align: left;
+      margin-left: 234px;
+    }
+
+    p {
+      color: #4d4d4d;
+      text-align: left;
+      margin-top: -5px;
+      margin-left: 234px;
+    }
+
+    .text-author {
+      padding-top: 15px;
+      margin-left: 234px;
+      color: #4d4d4d;
+      font-style: italic;
+    }
+  }
+
+  .shift {
+    width: 100%;
+    height: 60px;
+    background: white;
+    margin-top: 10px;
+  }
+
+  .pictures {
+    width: 100%;
+    background: white;
+    text-align: center;
+    color: #FFFFF2;
+    margin-top: 60px;
+
+    .pictures-row {
+      width: 100%;
+      height: auto;
+      background: white;
+      float: left;
+
+      img {
+        width: 190px;
+        height: 190px;
+        object-fit: cover;
+        display: inline-block;
+        border-radius: 5px;
+        margin: 6px;
+        margin-top: -1px;
+      }
+    }
+  }
+
+  a {
+    margin-top: 18px;
+    margin-left: 50px;
+    color: #FF6A6A;
+    padding-bottom: 20px;
+
+  }
+}
