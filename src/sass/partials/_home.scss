@@ -154,10 +154,18 @@
         height: 190px;
         object-fit: cover;
         display: inline-block;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 6px;
         margin-top: -1px;
       }
+
+      img:hover {
+        cursor: pointer;
+        opacity: 0.7;
+        background-color: #333333;
+        transition: 1s;
+      }
+      
     }
 
     .pictures-second-row {
@@ -171,17 +179,24 @@
         height: 190px;
         object-fit: cover;
         display: inline-block;
-        border-radius: 5px;
+        border-radius: 3px;
         margin: 6px;
         margin-top: -1px;
+      }
+
+      img:hover {
+        cursor: pointer;
+        opacity: 0.7;
+        transition: 1s;
+        background-color: #333333;
       }
     }
   }
 
-  a {
-    margin-top: -5px;
+  .social-media {
+    padding-bottom: 40px;
+    margin-top: 10px;
     margin-left: 50px;
     color: #FF6A6A;
-    padding-bottom: 20px;
   }
 }

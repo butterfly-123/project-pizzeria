@@ -95,6 +95,7 @@ const app = {
         event.preventDefault();
 
         // get page id from href attribute
+        // #home.replace('#', '') => home
         const id = clickedElement.getAttribute('href').replace('#', '');
 
         // run thisApp.activePage whit that id
@@ -105,6 +106,15 @@ const app = {
         window.location.hash = '#/' + id;
       });
     }
+
+    window.onhashchange = function(event) { 
+      //"http://localhost:3000/#/booking" => ["http://localhost:3000/", "/booking"]
+      //["http://localhost:3000/", "/booking"][1] => "/booking"
+      //"/booking".substring(1) => "booking"
+      const id = event.newURL.split('#')[1].substring(1);
+
+      thisApp.activatePage(id);
+    };
   },
 
   activatePage: function(pageId) {
