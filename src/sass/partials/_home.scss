@@ -173,7 +173,9 @@
     }
 
     i {
-      margin: 2px;
+      margin: 5px;
+      color: white;
+      font-size: 20px;
     }
 
     .image:hover .icon {
@@ -181,7 +183,7 @@
     }
 
     .image i:hover {
-      color: #ff6b6b;
+      color: #FF6969;
       cursor: pointer;
     }
   }
