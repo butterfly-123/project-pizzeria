@@ -5,7 +5,7 @@
 }
 
 .btn-secondary {
-  @include btn($color-main, $color-light, $color-main);
+  @include btn($color-main,  $color-light, $color-main);
 }
 
 .btn-quantity {

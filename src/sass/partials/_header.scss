@@ -1,7 +1,7 @@
 .header {
   padding: ($base-size * 5) 0 ($base-size * 8) 0;
-  background: $color-dark;
-  color: $color-light;
+  background: #D7A532;
+  color: $color-dark;
 
   &__wrapper {
     position: relative;
@@ -16,9 +16,10 @@
   &__title {
     margin: 0 0 $base-size 0;
     font-size: ($base-size * 4);
-    font-family: $font-header;
+    font-family: 'Cinzel', serif;
     font-weight: $font-light;
     text-transform: uppercase;
+    font-weight: bold;
 
     span {
       font-weight: $font-bold;
@@ -31,6 +32,7 @@
     font-size: ($base-size * 1.5);
     font-weight: $font-light;
     font-style: italic;
+    font-family: 'Cinzel', serif;
   }
 
 }
