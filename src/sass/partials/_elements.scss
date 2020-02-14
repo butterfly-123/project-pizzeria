@@ -1,15 +1,15 @@
 /* Buttons */
 
 .btn-primary {
-  @include btn($color-dark, $color-light, $color-dark);
+  @include btn($color-main,  $color-dark, $color-main);
 }
 
 .btn-secondary {
-  @include btn($color-main,  $color-light, $color-main);
+  @include btn($color-main,  $color-dark, $color-main);
 }
 
 .btn-quantity {
-  @include btn($color-dark, $color-light, $color-dark);
+  @include btn($color-main,  $color-dark, $color-main);
   vertical-align: top;
   padding: 0;
   width: 30px;

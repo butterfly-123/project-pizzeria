@@ -74,11 +74,11 @@
     .open-hour {
       width: 100%;
       height: 120px;
-      background: #C04E44;
+      background: $color-main;
       float: left;
       border-radius: 3px;
       margin-top: 6px;
-      color: #FFFFF2;
+      color: $color-dark;
 
       h2 {
         padding-top: 10px;
@@ -187,9 +187,9 @@
       cursor: pointer;
     }
 
-     .image .fa-share-alt:hover {
-       color: #DCDAC4
-     }
+    .image .fa-share-alt:hover {
+      color: #DCDAC4;
+    }
   }
 
   .social-media {
