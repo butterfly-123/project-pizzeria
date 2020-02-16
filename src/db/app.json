@@ -31,15 +31,23 @@
               },
               "cappuccino": {
                 "label": "Cappuccino",
-                "price": 1
+                "price": 5
               },
               "espresso": {
                 "label": "Espresso",
-                "price": 1
+                "price": 2
               },
               "macchiato": {
                 "label": "Macchiato ",
-                "price": 1
+                "price": 4
+              },
+              "lungo": {
+                "label": "Lungo ",
+                "price": 3
+              },
+              "irish coffee": {
+                "label": "Irish coffee ",
+                "price": 3
               }
             }
           }
@@ -68,12 +76,16 @@
             "options": {
               "tomato": {
                 "label": "Tomato",
-                "price": 0,
+                "price": 2,
                 "default": true
               },
               "cream": {
                 "label": "Sour cream",
-                "price": 2
+                "price": 3
+              },
+              "garlic": {
+                "label": "Garlic",
+                "price": 1
               }
             }
           },
@@ -88,17 +100,17 @@
               },
               "redPeppers": {
                 "label": "Red peppers",
-                "price": 2,
+                "price": 1,
                 "default": true
               },
               "greenPeppers": {
                 "label": "Green peppers",
-                "price": 2,
+                "price": 1,
                 "default": true
               },
               "mushrooms": {
                 "label": "Mushrooms",
-                "price": 2,
+                "price": 3,
                 "default": true
               },
               "basil": {
@@ -108,6 +120,18 @@
               },
               "salami": {
                 "label": "Salami",
+                "price": 3
+              },
+              "ham": {
+                "label": "Ham",
+                "price": 4
+              },
+              "maize": {
+                "label": "Maize",
+                "price": 1
+              },
+              "pineapple": {
+                "label": "Pineapple",
                 "price": 3
               }
             }
@@ -127,7 +151,7 @@
               },
               "thick": {
                 "label": "thick",
-                "price": 2
+                "price": 1
               },
               "cheese": {
                 "label": "cheese in edges",
@@ -167,7 +191,7 @@
             "options": {
               "cucumber": {
                 "label": "Cucumber",
-                "price": 1,
+                "price": 2,
                 "default": true
               },
               "tomatoes": {
@@ -175,26 +199,34 @@
                 "price": 1,
                 "default": true
               },
-              "olives": {
-                "label": "Olives",
-                "price": 1,
+              "dark olives": {
+                "label": "Dark olives",
+                "price": 3,
                 "default": true
               },
               "feta": {
                 "label": "Feta cheese",
-                "price": 1
+                "price": 4
               },
               "cheese": {
                 "label": "Cheese",
-                "price": 1
+                "price": 6
               },
               "herbs": {
                 "label": "Fresh herbs",
-                "price": 1,
+                "price": 2,
                 "default": true
               },
-              "pepper": {
-                "label": "Black pepper",
+              "green olives": {
+                "label": "Green olives",
+                "price": 3
+              },
+              "roasted sunflower": {
+                "label": "Roasted sunflower",
+                "price": 1
+              },
+              "pumpkin seeds": {
+                "label": "Pumpkin seeds",
                 "price": 1
               }
             }

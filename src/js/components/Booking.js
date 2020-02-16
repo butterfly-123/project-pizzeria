@@ -160,6 +160,8 @@ export class Booking {
 
     const bookingUrl = settings.db.url + '/' + settings.db.booking;
 
+    thisBooking.hour = utils.numberToHour(thisBooking.hour);
+
     const bookingPayload = {
       date: thisBooking.date,
       hour: thisBooking.hour,
@@ -170,7 +172,7 @@ export class Booking {
       phone: thisBooking.dom.phone.value
     };
 
-    for (let table of thisBooking.dom.starters) {
+    for (let table of thisBooking.dom.tables) {
       if (table.checked == true) {
         bookingPayload.tables.push(table.value);
       }

@@ -18,14 +18,15 @@
     <div class="container">
       <div class="header__wrapper">
         <div class="logo">
-          <h1 class="logo__title">Tastiest!</h1>
-          <h2 class="logo__subtitle">the most original and tasty pizza</h2>
+          <h1 class="logo__title">Tastiest</h1>
+          <h2 class="logo__subtitle">the most original and tasty food</h2>
         </div>
 
         <div class="main-nav">
           <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
+          <a href="#map">Map</a>
         </div>
         
         <div id="cart" class="cart">
@@ -67,7 +68,7 @@
 
   <div id="pages">
 
-    <section id="home" type="text/x-handlebars-template">
+    <section id="home">
 
       <div class="home-widget">
         <div class="home-nav">
@@ -82,6 +83,9 @@
           <a href="http://localhost:3000/#/booking" target="self">
             <div class="booking">
               <h2>BOOK A TABLE</h2>
+              <p class="text-display">
+                A dream place for you
+              </p>
             </div>
           </a>
           <div class="open-hour">
@@ -98,6 +102,11 @@
         </div>
 
         <div class="shift">
+          <div class="parent-dot">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
         </div>
 
         <div class="pictures">
@@ -145,14 +154,42 @@
             </div>
         </div>
         <a href="#" class="social-media">View more on Istagram</a>
-    </div>
+      </div>
     </section>
 
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
+
     <section id="booking">
       <div class="booking-wrapper container"></div>
+    </section>
+
+    <section id="map">
+      <div class="map-widget"> 
+          <h2>OUR LOCATED</h2>
+          <div class="img-map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9774.538853345302!2d20.997240239274905!3d52.231854063403325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spl!2sat!4v1581850589073!5m2!1spl!2sat" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          </div>
+          <p>We are one of the most liked reastaurants. We have very carefully prepared dishes and original flavors of pizza. It is very important to us that you are satisfied, that's why we put our <b> heart </b> in every dish.</p> <br>
+          <h3>Contact Us</h3>
+          <div class="contact">
+              <div class="container">
+                  <form action="/action_page.php">
+                    <p for="fname">First Name</p>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                
+                    <p for="lname">Last Name</p>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                
+                    <p for="subject">Subject</p>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                
+                    <input type="submit" value="Submit">
+                  </form>
+                </div>
+          </div>
+      </div>
     </section>
   </div>
 
@@ -211,8 +248,39 @@
                 Bread
               </label>
             </div>
-          </div>
-        </div>
+          </div><div> <!-- option-row -->
+            <span class="booking-option-title">Company meeting</span>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="yes">
+                <span class="checkbox__checkmark"></span>
+                Yes
+              </label>
+            </div>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="no">
+                <span class="checkbox__checkmark"></span>
+                No
+              </label>
+            </div>
+          </div><div> <!-- option-row -->
+            <span class="booking-option-title">Smoking</span>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="yes">
+                <span class="checkbox__checkmark"></span>
+                Yes
+              </label>
+            </div>
+            <div class="checkbox"> <!-- checkbox -->
+              <label>
+                <input type="checkbox" name="starter" value="no">
+                <span class="checkbox__checkmark"></span>
+                No
+              </label>
+            </div>
+          </div></div>
         <div class="order-confirmation">
           <input type="tel" name="phone" placeholder="Your phone">
           <input type="text" name="address" placeholder="Your address">
