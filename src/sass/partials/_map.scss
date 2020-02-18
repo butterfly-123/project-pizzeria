@@ -1,0 +1,78 @@
+.map-widget {
+  margin: 0 auto;
+  padding-top: 36px;
+  border-radius: 5px;
+  width: 700px;
+  background: white;
+  font-family: $font-text;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lato';
+  height: 1100px;
+  margin-top: 40px;
+  font-family: $font-header;
+  margin-bottom: 50px;
+
+  .img-map iframe{
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    display: inline-block;
+    margin-left: 100px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px #bbb;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: x-large;
+    font-weight: normal;
+
+  }
+
+  h3 {
+    margin-left: 100px;
+  }
+
+  p {
+    text-align: left;
+    font-family: "Lato", sans-serif;
+    margin: 50px 100px 0px 100px;
+  }
+
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+  input[type=submit] {
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: $color-main;
+    color: $color-dark;
+  }
+  
+  input[type=submit]:hover {
+    background-color: lighten(#C04E44, 3%);
+  }
+  
+  .container {
+    margin: 0 80px 0 80px;
+    border-radius: 5px;
+    padding: 20px;
+
+    p {
+      margin-left: 0px;
+      margin-top: -10px;
+    }
+  }
+}
