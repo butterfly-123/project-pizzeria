@@ -108,10 +108,8 @@ const app = {
     }
 
     window.onhashchange = function(event) { 
-      //"http://localhost:3000/#/booking" => ["http://localhost:3000/", "/booking"]
-      //["http://localhost:3000/", "/booking"][1] => "/booking"
-      //"/booking".substring(1) => "booking"
-      const id = event.newURL.split('#')[1].substring(1);
+      //"#booking" => "booking"
+      const id = event.newURL.replace('#', '');
 
       thisApp.activatePage(id);
     };
