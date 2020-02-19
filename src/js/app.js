@@ -91,8 +91,8 @@ const app = {
 
     window.onhashchange = function(event) { 
       event.preventDefault();
-      this.console.log(event.newURL, event.newURL.split("/"));
-      const id = event.newURL.split("/")[3].replace('#', '');
+      this.console.log(event.newURL, event.newURL.split('/'));
+      const id = event.newURL.split('/')[3].replace('#', '');
 
       thisApp.activatePage(id);
     };
