@@ -89,27 +89,10 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
-    for (let link of thisApp.navLinks) {
-      link.addEventListener('click', function(event) {
-        const clickedElement = this;
-        event.preventDefault();
-
-        // get page id from href attribute
-        // #home.replace('#', '') => home
-        const id = clickedElement.getAttribute('href').replace('#', '');
-
-        // run thisApp.activePage whit that id
-        thisApp.activatePage(id);
-
-        // change URL hash
-
-        window.location.hash = '#/' + id;
-      });
-    }
-
     window.onhashchange = function(event) { 
-      //"#booking" => "booking"
-      const id = event.newURL.replace('#', '');
+      event.preventDefault();
+      this.console.log(event.newURL, event.newURL.split("/"));
+      const id = event.newURL.split("/")[3].replace('#', '');
 
       thisApp.activatePage(id);
     };
@@ -130,11 +113,7 @@ const app = {
         classNames.nav.active,
         link.getAttribute('id') == pageId
       );
-      // console.log('link: ', link);
-      // console.log('thisApp.pages: ', thisApp.pages);
     }
-
-    window.location.hash = '#/' + pageId;
   },
 
   initBooking() {
