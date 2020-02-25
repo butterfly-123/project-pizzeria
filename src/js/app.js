@@ -68,6 +68,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initBooking();
+    thisApp.initCarousel();
   },
 
   initPages: function() {
@@ -126,6 +127,36 @@ const app = {
 
     // tworzy nowa instancje klasy booking
     thisApp.booking = new Booking(reservWidgetContainer);
+  },
+
+  initCarousel() {
+    // 1. Click in Buttons
+    const coarouselButtonList = document.querySelectorAll('.dot');
+
+    console.log('initCarousel', coarouselButtonList);
+
+    // 2. Click in one Button
+
+    coarouselButtonList.forEach((button) => {
+      console.log('ANETA', button);
+
+      button.addEventListener('click', (e) => {
+        console.log('click button', e);
+      });
+
+      // 3. If Button is active, display page
+      if (e.nodeName ==  "SPAN") {
+        const clickButton = e.nodeName;
+
+      } 
+    });
+    // for (let button in coarouselButtonList) {
+    //   console.log(button);
+
+    //   button.addEventListener('click', (e) => {
+    //     console.log('click button', e);
+    //   });
+    // }
   }
 };
 

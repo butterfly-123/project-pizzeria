@@ -115,7 +115,7 @@
     }
   }
 
-  .home-text {
+  .coarousel-wraper {
     width: 605px;
     background: white;
     text-align: center;
@@ -123,10 +123,9 @@
     margin-top: 100px;
     color: #FFFFFF;
 
-    .picture {
-      width: 194px;
-      height: 195px;
-      background-image: url("../images/pizza-3.jpg");
+    .coarousel-image img {
+      width: 200px;
+      height: 200px;
       background-size: cover;
       float: left;
       border-radius: 3px;
@@ -146,6 +145,10 @@
       font-family: "Lato", sans-serif;
     }
 
+    .slide {
+      display: none;
+    }
+
     .text-author {
       padding-top: 15px;
       margin-left: 234px;
@@ -161,7 +164,7 @@
     background: white;
     margin-top: 10px;
 
-    .parent-dot {
+    .coarousel-dots {
       margin-left: 303px;
     }
 
