@@ -142,13 +142,7 @@ const app = {
 
       button.addEventListener('click', (e) => {
         console.log('click button', e);
-      });
-
-      // 3. If Button is active, display page
-      if (e.nodeName ==  "SPAN") {
-        const clickButton = e.nodeName;
-
-      } 
+      }); 
     });
     // for (let button in coarouselButtonList) {
     //   console.log(button);
